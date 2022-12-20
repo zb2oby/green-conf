@@ -3,8 +3,8 @@ import {Joueur} from "../Joueur";
 
 export class TirageUnitaireResponse {
     constructor({tirage, joueur}) {
-        this.tirage = Tirage.from(tirage);
-        this.joueur = Joueur.from(joueur);
+        this.tirage = tirage ? Tirage.from(tirage) : null;
+        this.joueur = joueur ? Joueur.from(joueur) : null;
     }
 
 }

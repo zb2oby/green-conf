@@ -5,7 +5,7 @@ export class Carte {
         this.idCarte = idCarte;
         this.image = image;
         this.description = description;
-        this.categorie = new Categorie(categorie);
+        this.categorie = categorie ? new Categorie(categorie) : null;
     }
 
     static from({idCarte, image, description, categorie}) {

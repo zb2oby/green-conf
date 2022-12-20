@@ -1,14 +1,12 @@
-import {Joueur} from "./Joueur";
 import {Carte} from "./Carte";
 
 export class Tirage {
-    constructor(numeroTirage, carte, joueur) {
+    constructor(numeroTirage, carte) {
         this.numeroTirage = numeroTirage;
-        this.carte = Carte.from(carte);
-        this.joueur = Joueur.from(joueur);
+        this.carte = carte ? Carte.from(carte) : null;
     }
 
-    static from({numeroTirage, carte, joueur}) {
-        return new Tirage(numeroTirage, carte, joueur);
+    static from({numeroTirage, carte}) {
+        return new Tirage(numeroTirage, carte);
     }
 }
