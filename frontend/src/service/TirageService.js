@@ -1,7 +1,6 @@
 import {TirageCompletResponse} from "../model/response/TirageCompletResponse";
 import {Conclusion} from "../model/Conclusion";
 import {InitierTirageResponse} from "../model/response/InitierTirageResponse";
-import {TirageUnitaireResponse} from "../model/response/TirageUnitaireResponse";
 import {Carte} from "../model/Carte";
 import {Categorie} from "../model/Categorie";
 import {Joueur} from "../model/Joueur";
@@ -23,37 +22,29 @@ export function initTirage(joueur) {
 }
 
 export function tirageUnitaireForNum(numTirage) {
-    return Promise.resolve(
-        new TirageUnitaireResponse({
-            tirage: new Tirage(
-                numTirage,
-                Carte.from({idCarte: Math.random().toString().split(".")[1], image: "image.jpg", description: "oulala", categorie: new Categorie("mort", "CODE_01")})
-            ),
-            joueur: new Joueur()}
-    ))
-    /*const url = `${BASE_URI}/tirage/tirage-unitaire/${numTirage}`;
+    const url = `${BASE_URI}/tirage/tirage-unitaire?num_tirage=${numTirage}`;
      return fetch(url, {
          method: 'GET',
-         credentials: 'include',
          headers: {
-             'Accept': 'application/json'
+             'Content-Type': 'application/json'
          }
      })
      .then(r => r.json())
-     .then(r => new TirageUnitaireResponse(r));*/
+     .then(r => Tirage.from(r));
 }
 
 export function conclusionTirageFor(numTirage) {
-    return Promise.resolve(new Conclusion(numTirage, "analyse de fifou",22));
-    /*const url = `${BASE_URI}/tirage/conclusion-tirage/${numTirage}`;
+    const url = `${BASE_URI}/tirage/conclusion-tirage?num_tirage=${numTirage}`;
     return fetch(url, {
         method: 'GET',
-        credentials: 'include',
         headers: {
-            'Accept': 'application/json'
+            'Content-Type': 'application/json'
         }
     })
-        .then(r => Conclusion.from(r.json()));*/
+    .then(r => r.json())
+    .then(r => {
+        Conclusion.from(r)
+    });
 }
 
 export function getTirageComplet(joueur) {

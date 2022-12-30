@@ -18,8 +18,8 @@ public class Conclusion {
 		super();
 	}
 
-	@JsonProperty("numeroTirage")
-	private Integer numeroTirage = null;
+	@JsonProperty("numTirage")
+	private Integer numTirage = null;
 
 	@JsonProperty("analyse")
 	private String analyse = null;
@@ -27,24 +27,24 @@ public class Conclusion {
 	@JsonProperty("scoreBonheur")
 	private String scoreBonheur = null;
 
-	public Conclusion numeroTirage(Integer numeroTirage) {
-		this.numeroTirage = numeroTirage;
+	public Conclusion numTirage(Integer numTirage) {
+		this.numTirage = numTirage;
 		return this;
 	}
 
 	/**
 	 * numéro du tirage
 	 * 
-	 * @return numeroTirage
+	 * @return numTirage
 	 **/
 	@ApiModelProperty(value = "numéro du tirage ")
 
-	public Integer getNumeroTirage() {
-		return numeroTirage;
+	public Integer getnumTirage() {
+		return numTirage;
 	}
 
-	public void setNumeroTirage(Integer numeroTirage) {
-		this.numeroTirage = numeroTirage;
+	public void setnumTirage(Integer numTirage) {
+		this.numTirage = numTirage;
 	}
 
 	public Conclusion analyse(String analyse) {
@@ -96,14 +96,14 @@ public class Conclusion {
 			return false;
 		}
 		Conclusion conclusion = (Conclusion) o;
-		return Objects.equals(this.numeroTirage, conclusion.numeroTirage)
+		return Objects.equals(this.numTirage, conclusion.numTirage)
 				&& Objects.equals(this.analyse, conclusion.analyse)
 				&& Objects.equals(this.scoreBonheur, conclusion.scoreBonheur);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(numeroTirage, analyse, scoreBonheur);
+		return Objects.hash(numTirage, analyse, scoreBonheur);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class Conclusion {
 		StringBuilder sb = new StringBuilder();
 		sb.append("class Conclusion {\n");
 
-		sb.append("    numeroTirage: ").append(toIndentedString(numeroTirage)).append("\n");
+		sb.append("    numTirage: ").append(toIndentedString(numTirage)).append("\n");
 		sb.append("    analyse: ").append(toIndentedString(analyse)).append("\n");
 		sb.append("    scoreBonheur: ").append(toIndentedString(scoreBonheur)).append("\n");
 		sb.append("}");

@@ -53,6 +53,6 @@ public class TirageServiceImpl implements ITirageService {
 	@Override
 	public Conclusion getConclusion(String numTirage) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Conclusion();
 	}
 }

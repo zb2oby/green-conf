@@ -14,7 +14,7 @@ export const TirageContent = ({currentTirage}) => {
            proms.push(tirageUnitaireForNum(currentTirage?.numTirage))
         }
         Promise.all(proms).then(res => {
-            res.forEach(r => newCartes.push(r?.tirage?.carte))
+            res.forEach(tirage => newCartes.push(tirage?.carte))
             setCartes(newCartes)
             conclusionTirageFor(currentTirage?.numTirage).then(conc => setConclusion(conc))
         })

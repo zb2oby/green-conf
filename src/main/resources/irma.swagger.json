@@ -862,7 +862,7 @@
 
       "required": [
 
-        "numeroTIrage",
+        "numTirage",
 
         "analyse"
 
@@ -870,7 +870,7 @@
 
       "properties": {
 
-        "numeroTirage": {
+        "numTirage": {
 
           "type": "integer",
 
