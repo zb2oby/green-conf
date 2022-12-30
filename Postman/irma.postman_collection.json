@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "36ee28d7-c3e3-415e-9efe-ee2dd2c25564",
+		"name": "irma",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Carte",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/carte/get-all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"carte",
+						"get-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTirageUnique",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/tirage-unitaire?num_tirage=55",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"tirage-unitaire"
+					],
+					"query": [
+						{
+							"key": "num_tirage",
+							"value": "55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initier Tirage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prenom\": \"Jay\",\n    \"dateNaissance\": \"22/07/2012\",\n    \"signeAstro\": \"Cancer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/initier-tirage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"initier-tirage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TirageComplet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prenom\": \"Jay\",\n    \"dateNaissance\": \"22/07/2012\",\n    \"signeAstro\": \"Cancer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/tirage-complet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"tirage-complet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
