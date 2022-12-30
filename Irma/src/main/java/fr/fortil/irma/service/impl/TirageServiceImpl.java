@@ -11,6 +11,7 @@ import fr.fortil.irma.dto.InitTirage;
 import fr.fortil.irma.dto.Joueur;
 import fr.fortil.irma.dto.Tirage;
 import fr.fortil.irma.dto.TirageComplet;
+import fr.fortil.irma.dto.Tirages;
 import fr.fortil.irma.service.ICarteService;
 import fr.fortil.irma.service.ITirageService;
 
@@ -37,8 +38,17 @@ public class TirageServiceImpl implements ITirageService {
 
 	@Override
 	public TirageComplet getTirageComplet(Joueur joueur) {
-		// TODO Auto-generated method stub
-		return null;
+		TirageComplet complet = new TirageComplet();
+		this.initierTirage(joueur);
+		complet.setJoueur(joueur);
+		complet.setTirages(this.initierTirageComplet(this.initierTirage(joueur).getNumTirage()));
+		return complet;
+	}
+
+	private Tirages initierTirageComplet(Integer numTirage) {
+		Tirages tirages = new Tirages();
+		tirages.add(this.getTirageUnique(numTirage));
+		return tirages;
 	}
 
 	@Override
