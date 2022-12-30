@@ -33,7 +33,7 @@ function App() {
         <div className="container">
             <div className={"mb-5 text-center"}>
                 <h1>IRMA SAUVE LA PLANETE</h1>
-                <Button onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>
+                {!iniTirage && <Button onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>}
             </div>
             {iniTirage &&
                 <TirageForm joueur={currentTirage} handleInitTirage={handleInitTirage} handleInitJoueur={handleInitJoueur}/>
