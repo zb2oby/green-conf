@@ -1,0 +1,979 @@
+"swagger": "2.0",
+
+  "info": {
+
+    "description": "Api permettant de gérer les tirages de cartes\n",
+
+    "version": "v1.0",
+
+    "title": "Irma",
+
+    "contact": {}
+
+  },
+
+  "basePath": "/irma/v1",
+
+  "tags": [
+
+    {
+
+      "name": "Irma",
+
+      "description": "Ressource permettant de gérer les tirages de cartes\n"
+
+    }
+
+  ],
+
+  "paths": {
+
+    "/tirage/initier-tirage": {
+
+      "post": {
+
+        "tags" : [ "initierTirage" ],
+
+        "summary" : "renvoi un joueur avec un numéro tirage\r\n",
+
+        "description" : "renvoi un joueur avec un numéro tirage.\r\n",
+
+        "operationId" : "initierTirage",
+
+        "consumes" : [ "application/json" ],
+
+        "produces" : [ "application/json" ],
+
+        "parameters" : [ {
+
+          "in" : "body",
+
+          "name" : "joueur",
+
+          "description" : "info du joueur",
+
+          "required" : true,
+
+          "schema" : {
+
+            "$ref" : "#/definitions/Joueur"
+
+          }
+
+        } ],
+
+        "responses": {
+
+          "200": {
+
+            "description": "retourne le numéro de tirage",
+
+            "schema": {
+
+              "$ref": "#/definitions/InitTirage"
+
+            }
+
+          },
+
+          "400": {
+
+            "description": "Parametres fournis incorrects"
+
+          },
+
+          "401" : {
+
+            "description" : "UNAUTHORIZED"
+
+          },
+
+          "403" : {
+
+            "description" : "FORBIDDEN"
+
+          },
+
+          "500": {
+
+            "description": "Une erreur technique est survenue"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/tirage-complet": {
+
+      "post": {
+
+        "tags" : [ "TirageComplet" ],
+
+        "summary" : "renvoi un tirage complet + conclusion\r\n",
+
+        "description" : "renvoi un tirage complet + conclusion.\r\n",
+
+        "operationId" : "getTirageComplet",
+
+        "consumes" : [ "application/json" ],
+
+        "produces" : [ "application/json" ],
+
+        "parameters" : [ {
+
+          "in" : "body",
+
+          "name" : "joueur",
+
+          "description" : "info du joueur",
+
+          "required" : true,
+
+          "schema" : {
+
+            "$ref" : "#/definitions/Joueur"
+
+          }
+
+        } ],
+
+        "responses": {
+
+          "200": {
+
+            "description": "retourne le tirage complet",
+
+            "schema": {
+
+              "$ref": "#/definitions/TirageComplet"
+
+            }
+
+          },
+
+          "400": {
+
+            "description": "Parametres fournis incorrects"
+
+          },
+
+          "401" : {
+
+            "description" : "UNAUTHORIZED"
+
+          },
+
+          "403" : {
+
+            "description" : "FORBIDDEN"
+
+          },
+
+          "500": {
+
+            "description": "Une erreur technique est survenue"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/tirage-unitaire" : {
+
+      "get" : {
+
+        "tags" : [ "tirageUnitaire" ],
+
+        "summary" : "retourne un tirage unitaire",
+
+        "description" : "retourne un tirage unitaire",
+
+        "operationId" : "getTirageUnique",
+
+        "produces" : [ "application/json" ],
+
+        "parameters": [
+
+          {
+
+            "in": "query",
+
+            "type": "integer",
+
+            "name": "num_tirage",
+
+            "required": true,
+
+            "description": "numero du tirage en cours"
+
+          }],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "le tirage",
+
+            "schema": {
+
+              "$ref": "#/definitions/Tirage"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/conclusion-tirage" : {
+
+      "get" : {
+
+        "tags" : [ "conclusionTirage" ],
+
+        "summary" : "retourne la conclusion du tirage",
+
+        "description" : "retourne la conclusion du tirage",
+
+        "operationId" : "getConclusionTirage",
+
+        "produces" : [ "application/json" ],
+
+        "parameters": [
+
+          {
+
+            "in": "query",
+
+            "type": "integer",
+
+            "name": "num_tirage",
+
+            "required": true,
+
+            "description": "numero du tirage en cours"
+
+          }],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "la conclusion",
+
+            "schema": {
+
+              "$ref": "#/definitions/Conclusion"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/categorie/get-all" : {
+
+      "get" : {
+
+        "tags" : [ "allCategorie" ],
+
+        "summary" : "retourne l'ensemble des catégories'",
+
+        "description" : "retourne toutes les catégories",
+
+        "operationId" : "getAllCategories",
+
+        "produces" : [ "application/json" ],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "les catégories",
+
+            "schema": {
+
+              "$ref": "#/definitions/Categories"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/categorie/code" : {
+
+      "get" : {
+
+        "tags" : [ "getByCodeCategorie" ],
+
+        "summary" : "retourne un catégorie spécifique'",
+
+        "description" : "retourne une catégorie spécifique",
+
+        "operationId" : "getByCodeCategorie",
+
+        "produces" : [ "application/json" ],
+
+        "parameters": [
+
+          {
+
+            "in": "query",
+
+            "type": "integer",
+
+            "name": "code",
+
+            "required": true,
+
+            "description": "code de la catégorie"
+
+          }],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "une catégorie spécifique",
+
+            "schema": {
+
+              "$ref": "#/definitions/Categorie"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/carte/get-all" : {
+
+      "get" : {
+
+        "tags" : [ "allCarte" ],
+
+        "summary" : "retourne l'ensemble des cartes'",
+
+        "description" : "retourne toutes les cartes",
+
+        "operationId" : "getAllCartes",
+
+        "produces" : [ "application/json" ],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "les catégories",
+
+            "schema": {
+
+              "$ref": "#/definitions/Cartes"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    },
+
+    "/tirage/carte/id" : {
+
+      "get" : {
+
+        "tags" : [ "getByIdCarte" ],
+
+        "summary" : "retourne un carte spécifique'",
+
+        "description" : "retourne une carte spécifique",
+
+        "operationId" : "getByIdCarte",
+
+        "produces" : [ "application/json" ],
+
+        "parameters": [
+
+          {
+
+            "in": "query",
+
+            "type": "integer",
+
+            "name": "id_carte",
+
+            "required": true,
+
+            "description": "identifiant de la carte souhaité"
+
+          }],
+
+        "responses" : {
+
+          "200" : {
+
+            "description": "une catégorie spécifique",
+
+            "schema": {
+
+              "$ref": "#/definitions/Carte"
+
+            }
+
+          },
+
+          "403" : {
+
+            "description" : "Accès refusé"
+
+          },
+
+          "404" : {
+
+            "description" : "Ressource inexistante"
+
+          },
+
+          "500" : {
+
+            "description" : "Erreur interne"
+
+          }
+
+        }
+
+      }
+
+    }
+
+  },
+
+  "definitions": {
+
+    "InitTirage": {
+
+      "type": "object",
+
+      "required": [
+
+        "numTirage"
+
+      ],
+
+      "properties": {
+
+        "numTirage": {
+
+          "type": "string",
+
+          "description": "num du tirage\n"
+
+        },
+
+        "joueur": {
+
+          "type": "object",
+
+          "$ref": "#/definitions/Joueur",
+
+          "description": "le joueur\n"
+
+        }
+
+      }
+
+    },
+
+    "TirageUnitaire": {
+
+      "type": "object",
+
+      "required": [
+
+        "tirage",
+
+        "joueur"
+
+      ],
+
+      "properties": {
+
+        "tirage": {
+
+          "type": "object",
+
+          "description": "tirage d'une carte\n",
+
+          "$ref": "#/definitions/Tirage"
+
+        },
+
+        "joueur": {
+
+          "type": "object",
+
+          "$ref": "#/definitions/Joueur",
+
+          "description": "le joueur\n"
+
+        }
+
+      }
+
+    },
+
+    "TirageComplet": {
+
+      "type": "object",
+
+      "required": [
+
+        "tirages",
+
+        "joueur",
+
+        "conclusion"
+
+      ],
+
+      "properties": {
+
+        "tirages": {
+
+          "type": "object",
+
+          "description": "tirages complet\n",
+
+          "$ref": "#/definitions/Tirages"
+
+        },
+
+        "joueur": {
+
+          "type": "object",
+
+          "$ref": "#/definitions/Joueur",
+
+          "description": "le joueur\n"
+
+        },
+
+        "conclusion": {
+
+          "type": "object",
+
+          "$ref": "#/definitions/Conclusion",
+
+          "description": "la conclusion du tirage\n"
+
+        }
+
+      }
+
+    },
+
+    "Tirages": {
+
+      "type": "array",
+
+      "description": "comprend un tirage complet",
+
+      "items": {
+
+        "$ref": "#/definitions/Tirage"
+
+      }
+
+    },
+
+    "Tirage": {
+
+      "type": "object",
+
+      "required": [
+
+        "numTirage",
+
+        "carte"
+
+      ],
+
+      "properties": {
+
+        "numTirage": {
+
+          "type": "string",
+
+          "description": "numéro du tirage"
+
+        },
+
+        "carte": {
+
+          "type": "object",
+
+          "description": "la carte tirée\n",
+
+          "$ref": "#/definitions/Carte"
+
+        }
+
+      }
+
+    },
+
+    "Cartes" :{
+
+      "type": "array",
+
+      "description": "liste des cartes",
+
+      "items": {
+
+        "$ref": "#/definitions/Carte"
+
+      }
+
+    },
+
+    "Carte": {
+
+      "type": "object",
+
+      "required": [
+
+        "idCarte",
+
+        "image",
+
+        "description"
+
+      ],
+
+      "properties": {
+
+        "idCarte": {
+
+          "type": "integer",
+
+          "description": "id de la carte"
+
+        },
+
+        "image": {
+
+          "type": "string",
+
+          "description": "nom de l'image de la carte"
+
+        },
+
+        "description": {
+
+          "type": "string",
+
+          "description": "le commentaire de la carte\n"
+
+        },
+
+        "categorie": {
+
+         "type": "string",
+
+          "description": "Catégorie de la carte\n"
+
+        },
+
+        "scoreBonheur": {
+
+          "type": "integer",
+
+          "description": "scode du bonheur de la carte \n"
+
+        }
+
+      }
+
+    },
+
+    "Joueur": {
+
+      "description": "info du joueur\n",
+
+      "type": "object",
+
+      "required": [
+
+        "prenom",
+
+        "dateNaissance"
+
+      ],
+
+      "properties": {
+
+        "prenom": {
+
+          "type": "string",
+
+          "description": "prénom du joueur\n"
+
+        },
+
+        "dateNaissance": {
+
+          "type": "string",
+
+          "description": "date de naissance\n"
+
+        },
+
+        "signeAstro": {
+
+          "type": "string",
+
+          "description": "signe astrologique du joueur\n"
+
+        }
+
+      }
+
+    },
+
+    "Conclusion": {
+
+      "description": "conclusion du tirage\n",
+
+      "type": "object",
+
+      "required": [
+
+        "numTirage",
+
+        "analyse"
+
+      ],
+
+      "properties": {
+
+        "numTirage": {
+
+          "type": "integer",
+
+          "description": "numéro du tirage\n"
+
+        },
+
+        "analyse": {
+
+          "type": "string",
+
+          "description": "conclusion du tirage\n"
+
+        },
+
+        "scoreBonheur": {
+
+          "type": "string",
+
+          "description": "score bonheur général du tirage\n"
+
+        }
+
+      }
+
+    },
+
+    "Categories" :{
+
+      "type": "array",
+
+      "description": "liste des catégories",
+
+      "items": {
+
+        "$ref": "#/definitions/Categorie"
+
+      }
+
+    },
+
+    "Categorie": {
+
+      "type": "object",
+
+      "required": [
+
+        "code"
+
+      ],
+
+      "properties": {
+
+        "code": {
+
+          "type": "string",
+
+          "enum": [
+
+            "code_01",
+
+            "code_02",
+
+            "code_03",
+
+            "code_04",
+
+            "code_05",
+
+            "code_06",
+
+            "code_07",
+
+            "code_08"
+
+          ],
+
+          "description": "code de la categorie.\n"
+
+        },
+
+        "libelle": {
+
+          "type": "string",
+
+          "enum": [
+
+            "MORT",
+
+            "ARGENT",
+
+            "AMOUR",
+
+            "MOBILITE",
+
+            "SANTE",
+
+            "RENCONTRE",
+
+            "TRAVAIL",
+
+            "FAMILLE"
+
+          ],
+
+          "description": "nom de la categorie.\n"
