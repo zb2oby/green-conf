@@ -578,7 +578,7 @@
 
         "numTirage": {
 
-          "type": "integer",
+          "type": "string",
 
           "description": "num du tirage\n"
 
@@ -716,7 +716,7 @@
 
         "numTirage": {
 
-          "type": "integer",
+          "type": "string",
 
           "description": "numéro du tirage"
 
