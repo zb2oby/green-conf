@@ -12,7 +12,7 @@ export const TirageHeader = ({currentTirage, currentJoueur}) => {
                 </div>
                 <div>
                     <h3>Tirage</h3>
-                    <div>{currentTirage?.numeroTirage}</div>
+                    <div>{currentTirage?.numTirage}</div>
                 </div>
             </div>
         </div>

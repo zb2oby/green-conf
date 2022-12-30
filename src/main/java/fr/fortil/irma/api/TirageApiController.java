@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ import fr.fortil.irma.service.ITirageService;
 import io.swagger.annotations.ApiParam;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class TirageApiController implements TirageApi {
 
 	private static final Logger log = LoggerFactory.getLogger(TirageApiController.class);

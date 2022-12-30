@@ -11,12 +11,12 @@ export const TirageContent = ({currentTirage}) => {
         const newCartes = [];
         const proms = [];
         for (let i = 0; i<nbTirage; i++) {
-           proms.push(tirageUnitaireForNum(currentTirage?.numeroTirage))
+           proms.push(tirageUnitaireForNum(currentTirage?.numTirage))
         }
         Promise.all(proms).then(res => {
             res.forEach(r => newCartes.push(r?.tirage?.carte))
             setCartes(newCartes)
-            conclusionTirageFor(currentTirage?.numeroTirage).then(conc => setConclusion(conc))
+            conclusionTirageFor(currentTirage?.numTirage).then(conc => setConclusion(conc))
         })
 
     }

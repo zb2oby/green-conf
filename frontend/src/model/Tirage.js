@@ -1,12 +1,12 @@
 import {Carte} from "./Carte";
 
 export class Tirage {
-    constructor(numeroTirage, carte) {
-        this.numeroTirage = numeroTirage;
+    constructor(numTirage, carte) {
+        this.numTirage = numTirage;
         this.carte = carte ? Carte.from(carte) : null;
     }
 
-    static from({numeroTirage, carte}) {
-        return new Tirage(numeroTirage, carte);
+    static from({numTirage, carte}) {
+        return new Tirage(numTirage, carte);
     }
 }

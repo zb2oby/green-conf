@@ -1,8 +1,8 @@
 import {Joueur} from "../Joueur";
 
 export class InitierTirageResponse {
-    constructor({numeroTirage, joueur}) {
-        this.numeroTirage = numeroTirage;
+    constructor({numTirage, joueur}) {
+        this.numTirage = numTirage;
         this.joueur = joueur ? Joueur.from(joueur) : null;
     }
 }
