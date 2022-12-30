@@ -1,9 +1,6 @@
 import {TirageCompletResponse} from "../model/response/TirageCompletResponse";
 import {Conclusion} from "../model/Conclusion";
 import {InitierTirageResponse} from "../model/response/InitierTirageResponse";
-import {Carte} from "../model/Carte";
-import {Categorie} from "../model/Categorie";
-import {Joueur} from "../model/Joueur";
 import {Tirage} from "../model/Tirage";
 
 const BASE_URI = 'http://localhost:8080/irma/v1';
@@ -51,7 +48,6 @@ export function getTirageComplet(joueur) {
     const url = `${BASE_URI}/tirage/tirage-complet`;
     return fetch(url, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Accept': 'application/json'
         },

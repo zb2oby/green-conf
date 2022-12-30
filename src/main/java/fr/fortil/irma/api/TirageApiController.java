@@ -55,8 +55,8 @@ public class TirageApiController implements TirageApi {
 	}
 
 	public ResponseEntity<Categorie> getByCodeCategorie(
-			@NonNull @ApiParam(value = "code de la catégorie", required = true) @Validated @RequestParam(value = "code", required = true) Integer code) {
-		return new ResponseEntity<Categorie>(categorieService.getByCode(),
+			@NonNull @ApiParam(value = "code de la catégorie", required = true) @Validated @RequestParam(value = "code", required = true) String code) {
+		return new ResponseEntity<Categorie>(categorieService.getByCode(code),
 				HttpStatus.OK);
 	}
 
@@ -87,12 +87,6 @@ public class TirageApiController implements TirageApi {
 		return new ResponseEntity<InitTirage>(tirageService.initierTirage(joueur), HttpStatus.OK);
 
 		// return new ResponseEntity<InitTirage>(HttpStatus.NOT_IMPLEMENTED);
-	}
-
-	@Override
-	public ResponseEntity<Categorie> getByCodeCategorie() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

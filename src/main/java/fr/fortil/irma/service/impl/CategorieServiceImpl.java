@@ -16,9 +16,8 @@ public class CategorieServiceImpl implements ICategorieService {
 	}
 
 	@Override
-	public Categorie getByCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public Categorie getByCode(String code) {
+		return Categorie.fromCode(code);
 	}
 
 }

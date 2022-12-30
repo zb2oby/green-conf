@@ -43,11 +43,10 @@ public interface TirageApi {
         produces = { "application/json" })
     ResponseEntity<Categories> getAllCategories();
 
-
     @ApiOperation(value = "retourne un catégorie spécifique'", nickname = "getByCodeCategorie", notes = "retourne une catégorie spécifique", response = Categorie.class, tags={ "getByCodeCategorie", })
     @GetMapping(value = "/tirage/categorie/code",
         produces = { "application/json" })
-    ResponseEntity<Categorie> getByCodeCategorie();
+    ResponseEntity<Categorie> getByCodeCategorie(@NonNull @ApiParam(value = "code de la catégorie", required = true) @Validated @RequestParam(value = "code", required = true) String code);
 
 
     @ApiOperation(value = "retourne un carte spécifique'", nickname = "getByIdCarte", notes = "retourne une carte spécifique", response = Carte.class, tags={ "getByIdCategorie", })

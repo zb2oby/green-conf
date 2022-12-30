@@ -1,11 +1,9 @@
-import {Categorie} from "./Categorie";
-
 export class Carte {
     constructor(idCarte, image, description, categorie, scoreBohneur) {
         this.idCarte = idCarte;
         this.image = image;
         this.description = description;
-        this.categorie = categorie ? new Categorie(categorie) : null;
+        this.categorie = categorie;
         this.scoreBohneur = scoreBohneur;
     }
 

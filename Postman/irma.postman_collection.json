@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "36ee28d7-c3e3-415e-9efe-ee2dd2c25564",
+		"_postman_id": "b11699eb-6720-48dc-b81a-518658b45521",
 		"name": "irma",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -50,6 +50,63 @@
 						{
 							"key": "num_tirage",
 							"value": "55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getConclusion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/conclusion-tirage?num_tirage=55",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"conclusion-tirage"
+					],
+					"query": [
+						{
+							"key": "num_tirage",
+							"value": "55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categorie By Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/irma/v1/tirage/categorie/code?code=CODE_04",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"irma",
+						"v1",
+						"tirage",
+						"categorie",
+						"code"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "CODE_04"
 						}
 					]
 				}

@@ -7,6 +7,6 @@ public interface ICategorieService {
 	
 	public Categories getAll();
 	
-	public Categorie getByCode();
+	public Categorie getByCode(String code);
 
 }

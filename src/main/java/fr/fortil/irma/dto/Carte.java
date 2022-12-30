@@ -15,7 +15,7 @@ public class Carte   {
 	}
 
 @JsonProperty("idCarte")
-  private Integer idCarte = null;
+  private String idCarte = null;
 
   @JsonProperty("image")
   private String image = null;
@@ -29,7 +29,7 @@ public class Carte   {
   @JsonProperty("scoreBonheur")
   private Integer scoreBonheur = null;
 
-  public Carte idCarte(Integer idCarte) {
+  public Carte idCarte(String idCarte) {
     this.idCarte = idCarte;
     return this;
   }
@@ -39,11 +39,11 @@ public class Carte   {
    * @return idCarte
   **/
   @NonNull
-  public Integer getIdCarte() {
+  public String getIdCarte() {
     return idCarte;
   }
 
-  public void setIdCarte(Integer idCarte) {
+  public void setIdCarte(String idCarte) {
     this.idCarte = idCarte;
   }
 
