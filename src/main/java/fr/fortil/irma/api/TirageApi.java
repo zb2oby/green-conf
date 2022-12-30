@@ -59,7 +59,7 @@ public interface TirageApi {
     @ApiOperation(value = "retourne la conclusion du tirage", nickname = "getConclusionTirage", notes = "retourne la conclusion du tirage", response = Conclusion.class, tags={ "conclusionTirage", })
     @GetMapping(value = "/tirage/conclusion-tirage",
         produces = { "application/json" })
-    ResponseEntity<Conclusion> getConclusionTirage(@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) Integer numTirage);
+    ResponseEntity<Conclusion> getConclusionTirage(@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) String numTirage);
 
 
     @ApiOperation(value = "renvoi un tirage complet + conclusion  ", nickname = "getTirageComplet", notes = "renvoi un tirage complet + conclusion.  ", response = TirageComplet.class, tags={ "initierTirage", })
@@ -72,7 +72,7 @@ public interface TirageApi {
     @ApiOperation(value = "retourne un tirage unitaire", nickname = "getTirageUnique", notes = "retourne un tirage unitaire", response = Tirage.class, tags={ "tirageUnitaire", })
     @GetMapping(value = "/tirage/tirage-unitaire",
         produces = { "application/json" })
-    ResponseEntity<Tirage> getTirageUnique(@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) Integer numTirage);
+    ResponseEntity<Tirage> getTirageUnique(@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) String numTirage);
 
 
     @ApiOperation(value = "renvoi un joueur avec un numéro tirage  ", nickname = "initierTirage", notes = "renvoi un joueur avec un numéro tirage.  ", response = InitTirage.class, tags={ "initierTirage", })

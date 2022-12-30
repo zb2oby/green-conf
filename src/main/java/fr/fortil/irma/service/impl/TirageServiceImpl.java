@@ -1,11 +1,10 @@
 package fr.fortil.irma.service.impl;
 
-import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.fortil.irma.dto.Carte;
 import fr.fortil.irma.dto.Conclusion;
 import fr.fortil.irma.dto.InitTirage;
 import fr.fortil.irma.dto.Joueur;
@@ -24,12 +23,12 @@ public class TirageServiceImpl implements ITirageService {
 	@Override
 	public InitTirage initierTirage(Joueur joueur) {
 		InitTirage init = new InitTirage(joueur);
-		init.numTirage(new Random().nextInt(100));
+		init.numTirage(UUID.randomUUID().toString());
 		return init;
 	}
 
 	@Override
-	public Tirage getTirageUnique(Integer numTirage) {
+	public Tirage getTirageUnique(String numTirage) {
 		Tirage tirage = new Tirage();
 		tirage.setNumTirage(numTirage);
 		tirage.setCarte(carteService.piocherCarte());
@@ -45,14 +44,14 @@ public class TirageServiceImpl implements ITirageService {
 		return complet;
 	}
 
-	private Tirages initierTirageComplet(Integer numTirage) {
+	private Tirages initierTirageComplet(String numTirage) {
 		Tirages tirages = new Tirages();
 		tirages.add(this.getTirageUnique(numTirage));
 		return tirages;
 	}
 
 	@Override
-	public Conclusion getConclusion(Integer numTirage) {
+	public Conclusion getConclusion(String numTirage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

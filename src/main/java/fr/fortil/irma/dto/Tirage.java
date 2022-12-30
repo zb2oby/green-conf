@@ -16,12 +16,12 @@ public class Tirage   {
 	}
 
 @JsonProperty("numTirage")
-  private Integer numTirage = null;
+  private String numTirage = null;
 
   @JsonProperty("carte")
   private Carte carte = null;
 
-  public Tirage numTirage(Integer numTirage) {
+  public Tirage numTirage(String numTirage) {
     this.numTirage = numTirage;
     return this;
   }
@@ -32,11 +32,11 @@ public class Tirage   {
   **/
   @ApiModelProperty(required = true, value = "numéro du tirage")
   @NonNull
-  public Integer getNumTirage() {
+  public String getNumTirage() {
     return numTirage;
   }
 
-  public void setNumTirage(Integer numTirage) {
+  public void setNumTirage(String numTirage) {
     this.numTirage = numTirage;
   }
 
