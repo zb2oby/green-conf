@@ -8,8 +8,11 @@ export const TirageContent = ({currentTirage}) => {
 
     const [cartes, setCartes] = useState([]);
     const [conclusion, setConclusion] = useState(null);
+    const [revealed, setRevealed] = useState(false);
+    const NB_CARTES = 6;
 
     const tirerUnitairement = async (nbTirage) => {
+        setRevealed(true);
         const proms = await prepareListTirageUnitaire(nbTirage)
         Promise.all(proms)
             .then(allTirages => {
@@ -35,10 +38,10 @@ export const TirageContent = ({currentTirage}) => {
 
     return (
         <div>
+            <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed}/>
             <div className={"m-5"}>
-                <Button className={"mt-3"} onClick={() => tirerUnitairement(6)}>Tirer des carte !</Button>
+                <Button className={"mt-3"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
             </div>
-            <TirageChoice/>
             <div className="m-5 d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {
                     console.log("IMAGE", carte?.image)

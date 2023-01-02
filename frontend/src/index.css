@@ -30,7 +30,7 @@ img {
 }
 
 .card-tarot ul {
-  left: 7px;
+  left: 140px;
   margin: 0 auto;
   min-height: 220px;
   position: relative;
@@ -89,7 +89,7 @@ img {
   transition: .5s ease 0s;
 }
 
-.card-tarot .back-card:hover {
+.card-tarot .back-card:hover, .back-card.hover {
   top: -10px;
   -webkit-box-shadow: 0 0 5px rgb(0 0 0 / 90%);
   -moz-box-shadow: 0 0 5px rgba(0,0,0,0.9);
@@ -99,7 +99,14 @@ img {
   -moz-transition: .5s ease 0s;
   -ms-transition: .5s ease 0s;
   transition: .5s ease 0s;
+  cursor: pointer;
 }
+
+
+.hideCard {
+  display: none;
+}
+
 
 
 .card-tarot li:nth-child(1) {
