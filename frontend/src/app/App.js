@@ -31,7 +31,7 @@ function App() {
     return (
         <div className="container">
             <div className={"mb-5 text-center"}>
-                <h1 className={"mb-5"}>IRMA SAUVE LA PLANETE</h1>
+                <h1 className={"mb-5 mt-3"}>IRMA SAUVE LA PLANETE</h1>
                 {!iniTirage && <Button className={"irma-btn"} onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>}
             </div>
             {iniTirage &&

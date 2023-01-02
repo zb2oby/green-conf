@@ -43,23 +43,23 @@ export const TirageForm = ({joueur, handleInitTirage, handleInitJoueur}) => {
     ]
 
     return (
-        <div>
+        <div className={"init-form"}>
                 <Form onSubmit={submitInit}>
-                    <Form.Group className="mb-3" controlId="prenom">
+                    <Form.Group className="mb-3 inp-grp" controlId="prenom">
                         <Form.Label>Prénom :</Form.Label>
                         <Form.Control defaultValue={joueurData?.prenom}
                                       onChange={v => setJoueurData({...joueurData, prenom: v.target.value})}
                                       type={"text"}/>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="dateNaissance">
+                    <Form.Group className="mb-3 inp-grp" controlId="dateNaissance">
                         <Form.Label>Date de naissance :</Form.Label>
                         <Form.Control defaultValue={joueurData?.dateNaissance}
                                       onChange={v => setJoueurData({...joueurData, dateNaissance: v.target.value})}
                                       type="date"/>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="signeAstro">
+                    <Form.Group className="mb-3 inp-grp" controlId="signeAstro">
                         <Form.Label>Signe astrologique :</Form.Label>
                         <Form.Select value={joueurData?.signeAstro} onChange={v => setJoueurData({...joueurData, signeAstro: v.target.value})}
                                      type="select">

@@ -15,6 +15,23 @@ body {
 
 }
 
+input, select {
+  background-color: #dcc596 !important;
+  border-color: #2e5d66 !important;
+  color: aliceblue !important;
+}
+
+.init-form {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.4rem;
+  width: 350px;
+}
+/*.inp-grp {
+  width: 350px !important;
+}*/
+
+
 ul, li, ol {
   list-style: none;
   margin: 0;
@@ -55,6 +72,10 @@ img {
   left: 20px;
   text-shadow: none;
   font-size: 1.2rem;
+  box-shadow: 0px 1px 2px 0px rgba(255,255,255,1),
+  1px 2px 4px 0px rgba(255,255,255,1),
+  2px 4px 8px 0px rgba(255,255,255,1),
+  2px 4px 16px 0px rgba(255,255,255,1);
 }
 
 .card-tarot {
@@ -156,6 +177,10 @@ img {
 }
 .revealed-container {
   margin-top: 150px;
+}
+.reveal-btn {
+  position: relative;
+  top: -220px !important;
 }
 .card-revealed {
   background-color: #dcc596;
