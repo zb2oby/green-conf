@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button} from "react-bootstrap";
 import {conclusionTirageFor, tirageUnitaireForNum} from "../service/TirageService";
 import {getCategorieByCode} from "../service/Referentiel";
@@ -10,6 +10,8 @@ export const TirageContent = ({currentTirage}) => {
     const [conclusion, setConclusion] = useState(null);
     const [revealable, setRevealable] = useState(false);
     const [revealed, setRevealed] = useState(false);
+    const scrollRef = useRef(null)
+
     const NB_CARTES = 6;
 
     useEffect(()=> {
@@ -30,6 +32,11 @@ export const TirageContent = ({currentTirage}) => {
                 })).then(allCartesWithCategory => {
                     setCartes(allCartesWithCategory)
                 })
+                .finally(() =>
+                    setTimeout(()=> {
+                        executeScroll()
+                    }, 120)
+                )
             })
             .then(_ =>  conclusionTirageFor(currentTirage?.numTirage).then(conc => setConclusion(conc)))
 
@@ -44,13 +51,18 @@ export const TirageContent = ({currentTirage}) => {
         return proms
     }
 
+    const executeScroll = () => scrollRef && scrollRef?.current && scrollRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    })
+
     return (
         <div>
             <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed} onChoiceOk={setRevealable}/>
             {revealable && <div className={"m-5"}>
                 <Button className={"irma-btn mt-3 reveal-btn"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
             </div>}
-            <div className="revealed-container d-flex justify-content-around flex-wrap">
+            <div ref={scrollRef} className="revealed-container d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {
                     return (
                         <div className="card-revealed p-4" key={carte.idCarte}>
