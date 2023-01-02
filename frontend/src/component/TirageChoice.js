@@ -22,10 +22,13 @@ export const TirageChoice = ({nbCartes, isRevealed, onChoiceOk}) =>  {
     }, [])
 
     useEffect(() => {
-        if (choosenCards.length === nbCartes-1) {
+        if (choosenCards.length === nbCartes) {
             setStopPersist(true);
-            onChoiceOk(true)
+            onChoiceOk(true);
         }
+        /*if (choosenCards.length+1 >= nbCartes) {
+            onChoiceOk(true);
+        }*/
     }, [choosenCards, nbCartes, onChoiceOk])
 
     const persist = useCallback((choosenKey) => {

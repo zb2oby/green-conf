@@ -67,7 +67,7 @@ export const TirageForm = ({joueur, handleInitTirage, handleInitJoueur}) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <Button type={"submit"}>Enregistrer</Button>
+                    <Button className={"irma-btn"} type={"submit"}>Enregistrer</Button>
                 </Form>
         </div>
     )

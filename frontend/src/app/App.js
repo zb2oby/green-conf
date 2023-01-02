@@ -31,15 +31,15 @@ function App() {
     return (
         <div className="container">
             <div className={"mb-5 text-center"}>
-                <h1>IRMA SAUVE LA PLANETE</h1>
-                {!iniTirage && <Button onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>}
+                <h1 className={"mb-5"}>IRMA SAUVE LA PLANETE</h1>
+                {!iniTirage && <Button className={"irma-btn"} onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>}
             </div>
             {iniTirage &&
                 <TirageForm joueur={currentTirage} handleInitTirage={handleInitTirage} handleInitJoueur={handleInitJoueur}/>
             }
             {!iniTirage &&
                 <>
-                    <TirageHeader currentTirage={currentTirage} currentJoueur={currentJoueur}/>
+                    <TirageHeader className={"tirageHeader"} currentTirage={currentTirage} currentJoueur={currentJoueur}/>
                     <div className={"text-center"}>
                         <TirageContent currentTirage={currentTirage} />
                     </div>

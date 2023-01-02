@@ -48,12 +48,12 @@ export const TirageContent = ({currentTirage}) => {
         <div>
             <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed} onChoiceOk={setRevealable}/>
             {revealable && <div className={"m-5"}>
-                <Button className={"mt-3"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
+                <Button className={"irma-btn mt-3"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
             </div>}
-            <div className="m-5 d-flex justify-content-around flex-wrap">
+            <div className="revealed-container d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {
                     return (
-                        <div className="card-revealed w-50 p-4" key={carte.idCarte}>
+                        <div className="card-revealed p-4" key={carte.idCarte}>
                             <h4 className={"mb-2"}>{carte?.categorie}</h4>
                             <img src={require(`../assets/${carte?.image}`)} alt={carte?.idCarte}/>
                             <div className={"mt-3"}>{carte?.description}</div>
