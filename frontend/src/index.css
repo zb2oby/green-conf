@@ -1,16 +1,22 @@
+@font-face {
+  font-family: "playballregular";
+  src: url(assets/Playball/Playball-Regular.ttf) format("ttf");
+}
+
+
 body {
+  font-family: 'playballregular', serif;
+  font-style: normal;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(assets/background.jpg) no-repeat center center fixed;
+  background: linear-gradient(rgba(255,255,255,.18), rgba(255,255,255,.18)), url(assets/background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: aliceblue !important;
+
 }
 
 ul, li, ol {
@@ -29,12 +35,32 @@ img {
   height: auto;
 }
 
+.card-tarot {
+  background: url(assets/bgc-choice.jpg) no-repeat center center;
+  background-size: 940px 700px;
+  background-position-y: 0px;
+  height: 700px;
+  max-width: 940px;
+  margin: 0 auto;
+  border-radius: 90px;
+  box-shadow: 0px 1px 2px 0px rgba(255,255,255,1),
+  1px 2px 4px 0px rgba(255,255,255,1),
+  2px 4px 8px 0px rgba(255,255,255,1),
+  2px 4px 16px 0px rgba(255,255,255,1);
+}
+
 .card-tarot ul {
-  left: 140px;
+  top: 220px;
   margin: 0 auto;
   min-height: 220px;
   position: relative;
-  width: 80%;
+  width: 754px;
+  right: 20px;
+}
+
+.card-tarot h3 {
+  position: relative;
+  top: 190px;
 }
 
 .card-tarot li {
@@ -106,70 +132,153 @@ img {
 .hideCard {
   display: none;
 }
-
+.card-revealed {
+  text-shadow: 1px 1px 2px rgba(255,255,255,1);
+}
+.card-revealed img {
+  box-shadow: 0px 1px 2px 0px rgba(255,255,255,1),
+  1px 2px 4px 0px rgba(255,255,255,1),
+  2px 4px 8px 0px rgba(255,255,255,1),
+  2px 4px 16px 0px rgba(255,255,255,1);
+}
 
 
 .card-tarot li:nth-child(1) {
-  left: 0%;
+  left: 40px;
 }
 
 .card-tarot li:nth-child(2) {
-  left: 4%;
+  left: 80px;
 }
 
 .card-tarot li:nth-child(3) {
-  left: 8%;
+  left: 120px;
 }
 
 .card-tarot li:nth-child(4) {
-  left: 12%;
+  left: 160px;
 }
 
 .card-tarot li:nth-child(5) {
-  left: 16%;
+  left: 200px;
 }
 
 .card-tarot li:nth-child(6) {
-  left: 20%;
+  left: 240px;
 }
 
 .card-tarot li:nth-child(7) {
-  left: 24%;
+  left: 280px;
 }
 
 .card-tarot li:nth-child(8) {
-  left: 28%;
+  left: 320px;
 }
 
 .card-tarot li:nth-child(9) {
-  left: 32%;
+  left: 360px;
 }
 
 .card-tarot li:nth-child(10) {
-  left: 36%;
+  left: 400px;
 }
 
 .card-tarot li:nth-child(11) {
-  left: 40%;
+  left: 440px;
 }
 
 .card-tarot li:nth-child(12) {
-  left: 44%;
+  left: 480px;
 }
 
 .card-tarot li:nth-child(13) {
-  left: 48%;
+  left: 520px;
 }
 
 .card-tarot li:nth-child(14) {
-  left: 52%;
+  left: 560px;
 }
 
 .card-tarot li:nth-child(15) {
-  left: 56%;
+  left: 600px;
 }
 
 .card-tarot li:nth-child(16) {
-  left: 60%;
+  left: 640px;
 }
 
+
+@media screen and (max-width: 992px) {
+  .card-tarot ul {
+    top: 220px;
+    margin: 0 auto;
+    min-height: 220px;
+    position: relative;
+    width: 600px;
+    right: 14px;
+  }
+
+  .card-tarot li:nth-child(1) {
+    left: 30px;
+  }
+
+  .card-tarot li:nth-child(2) {
+    left: 60px;
+  }
+
+  .card-tarot li:nth-child(3) {
+    left: 90px;
+  }
+
+  .card-tarot li:nth-child(4) {
+    left: 120px;
+  }
+
+  .card-tarot li:nth-child(5) {
+    left: 150px;
+  }
+
+  .card-tarot li:nth-child(6) {
+    left: 180px;
+  }
+
+  .card-tarot li:nth-child(7) {
+    left: 210px;
+  }
+
+  .card-tarot li:nth-child(8) {
+    left: 240px;
+  }
+
+  .card-tarot li:nth-child(9) {
+    left: 270px;
+  }
+
+  .card-tarot li:nth-child(10) {
+    left: 300px;
+  }
+
+  .card-tarot li:nth-child(11) {
+    left: 330px;
+  }
+
+  .card-tarot li:nth-child(12) {
+    left: 360px;
+  }
+
+  .card-tarot li:nth-child(13) {
+    left: 390px;
+  }
+
+  .card-tarot li:nth-child(14) {
+    left: 420px;
+  }
+
+  .card-tarot li:nth-child(15) {
+    left: 450px;
+  }
+
+  .card-tarot li:nth-child(16) {
+    left: 480px;
+  }
+}

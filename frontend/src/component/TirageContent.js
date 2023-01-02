@@ -8,6 +8,7 @@ export const TirageContent = ({currentTirage}) => {
 
     const [cartes, setCartes] = useState([]);
     const [conclusion, setConclusion] = useState(null);
+    const [revealable, setRevealable] = useState(false);
     const [revealed, setRevealed] = useState(false);
     const NB_CARTES = 6;
 
@@ -19,6 +20,7 @@ export const TirageContent = ({currentTirage}) => {
 
     const tirerUnitairement = async (nbTirage) => {
         setRevealed(true);
+        setRevealable(false);
         const proms = await prepareListTirageUnitaire(nbTirage)
         Promise.all(proms)
             .then(allTirages => {
@@ -44,19 +46,17 @@ export const TirageContent = ({currentTirage}) => {
 
     return (
         <div>
-            <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed}/>
-            <div className={"m-5"}>
+            <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed} onChoiceOk={setRevealable}/>
+            {revealable && <div className={"m-5"}>
                 <Button className={"mt-3"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
-            </div>
+            </div>}
             <div className="m-5 d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {
-                    console.log("IMAGE", carte?.image)
                     return (
-                        <div className="w-50 p-4" key={carte.idCarte}>
-                            <h4>CARTE</h4>
-                            <div>{carte?.categorie}</div>
+                        <div className="card-revealed w-50 p-4" key={carte.idCarte}>
+                            <h4 className={"mb-2"}>{carte?.categorie}</h4>
                             <img src={require(`../assets/${carte?.image}`)} alt={carte?.idCarte}/>
-                            <div>{carte?.description}</div>
+                            <div className={"mt-3"}>{carte?.description}</div>
                         </div>
                     )
                 })}

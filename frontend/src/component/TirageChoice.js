@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {shuffle} from "../utils";
 import {getAllCategories} from "../service/Referentiel";
 
 
-export const TirageChoice = ({nbCartes, isRevealed}) =>  {
+export const TirageChoice = ({nbCartes, isRevealed, onChoiceOk}) =>  {
 
     const [categories, setAllCategories] = useState([])
     const [choicesCard, setChoicesCard] = useState([])
@@ -17,16 +17,24 @@ export const TirageChoice = ({nbCartes, isRevealed}) =>  {
                 cats.push(`${c}_01`);
                 cats.push(`${c}_02`);
             })
-            console.log(cats, shuffle(cats))
             setAllCategories(shuffle(cats))
         })
     }, [])
 
     useEffect(() => {
-        if (choosenCards.length+1 >= nbCartes) {
+        if (choosenCards.length === nbCartes-1) {
             setStopPersist(true);
+            onChoiceOk(true)
         }
-    }, [choosenCards, nbCartes])
+    }, [choosenCards, nbCartes, onChoiceOk])
+
+    const persist = useCallback((choosenKey) => {
+        if (! stopPersist) {
+            const choosen = [...choosenCards]
+            choosen.push(choosenKey)
+            setChoosenCards(choosen)
+        }
+    }, [choosenCards, stopPersist])
 
     useEffect(() => {
         let choices = [];
@@ -41,15 +49,9 @@ export const TirageChoice = ({nbCartes, isRevealed}) =>  {
             )
         })
         setChoicesCard(choices)
-    }, [categories, choosenCards, isRevealed])
+    }, [categories, choosenCards, isRevealed, persist])
 
-    const persist = (choosenKey) => {
-        if (! stopPersist) {
-            const choosen = [...choosenCards]
-            choosen.push(choosenKey)
-            setChoosenCards(choosen)
-        }
-    }
+
 
     return (
         <div className={"card-tarot"}>
