@@ -36,7 +36,6 @@ export const TirageChoice = ({nbCartes, isRevealed}) =>  {
                 <li id={`choice-${cat}`} key={`choice-${cat}`}>
                     <span onClick={() => persist(`choice-${cat}`)}>
                         <img src={require("../assets/card.png")} alt="card" className={`back-card ${isChoosenCard ? "hover" : ""} ${isChoosenCard && isRevealed ? "hideCard" : ""}`} />
-                        {/*<img src={require(`../assets/${cat}.jpeg`)} alt="card-h" className={`hidden-card ${isChoosenCard ? "hover" : ""}`} />*/}
                     </span>
                 </li>
             )

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
 import {conclusionTirageFor, tirageUnitaireForNum} from "../service/TirageService";
 import {getCategorieByCode} from "../service/Referentiel";
@@ -10,6 +10,12 @@ export const TirageContent = ({currentTirage}) => {
     const [conclusion, setConclusion] = useState(null);
     const [revealed, setRevealed] = useState(false);
     const NB_CARTES = 6;
+
+    useEffect(()=> {
+        if (currentTirage) {
+            setRevealed(false)
+        }
+    }, [currentTirage])
 
     const tirerUnitairement = async (nbTirage) => {
         setRevealed(true);
