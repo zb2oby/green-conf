@@ -17,6 +17,10 @@ public class Categories extends ArrayList<Categorie> {
 	 */
 	private static final long serialVersionUID = 835437089223479050L;
 
+	public Categories(ArrayList<Categorie> passArr) {
+		this.addAll(passArr);
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {

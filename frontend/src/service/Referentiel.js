@@ -12,3 +12,13 @@ export function getCategorieByCode(codeCategorie) {
         .then(r => r.json())
         .then(name => new Categorie(name, codeCategorie));
 }
+
+export function getAllCategories() {
+    const url = `${BASE_URI}/tirage/categorie/get-all`;
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(r => r.json());
+}

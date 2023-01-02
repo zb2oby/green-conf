@@ -1,4 +1,3 @@
-import '../App.css';
 import {TirageForm} from "../component/TirageForm";
 import {Button} from 'react-bootstrap';
 import React, {useEffect, useState} from "react";

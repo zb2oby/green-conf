@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
 import {conclusionTirageFor, tirageUnitaireForNum} from "../service/TirageService";
 import {getCategorieByCode} from "../service/Referentiel";
+import {TirageChoice} from "./TirageChoice";
 
 export const TirageContent = ({currentTirage}) => {
 
@@ -37,7 +38,7 @@ export const TirageContent = ({currentTirage}) => {
             <div className={"m-5"}>
                 <Button className={"mt-3"} onClick={() => tirerUnitairement(6)}>Tirer des carte !</Button>
             </div>
-
+            <TirageChoice/>
             <div className="m-5 d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {
                     console.log("IMAGE", carte?.image)
