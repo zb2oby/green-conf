@@ -1,5 +1,7 @@
 package fr.fortil.irma.api;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
@@ -67,7 +69,7 @@ public class TirageApiController implements TirageApi {
 
 	public ResponseEntity<Conclusion> getConclusionTirage(
 			@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) String numTirage) {
-		return new ResponseEntity<Conclusion>(tirageService.getConclusion(numTirage), HttpStatus.OK);
+		return new ResponseEntity<Conclusion>(tirageService.getConclusion(UUID.fromString(numTirage)), HttpStatus.OK);
 	}
 
 	public ResponseEntity<TirageComplet> getTirageComplet(
@@ -79,7 +81,7 @@ public class TirageApiController implements TirageApi {
 
 	public ResponseEntity<Tirage> getTirageUnique(
 			@NonNull @ApiParam(value = "numero du tirage en cours", required = true) @Validated @RequestParam(value = "num_tirage", required = true) String numTirage) {
-		return new ResponseEntity<Tirage>(tirageService.getTirageUnique(numTirage), HttpStatus.OK);
+		return new ResponseEntity<Tirage>(tirageService.getTirageUnique(UUID.fromString(numTirage), 1), HttpStatus.OK);
 	}
 
 	public ResponseEntity<InitTirage> initierTirage(
