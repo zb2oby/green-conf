@@ -16,12 +16,12 @@ import java.util.UUID;
 public class CarteServiceImpl implements ICarteService {
 
 	@Override
-	public Carte piocherCarte() {
+	public Carte piocherCarte(Integer positif) {
 		Lorem lorem = LoremIpsum.getInstance();
 		Carte carte = new Carte();
 		carte.setIdCarte(UUID.randomUUID().toString());
 		carte.setCategorie(Categorie.randomCategorieValue());
-		carte.setImage(String.format("%s_0%s.jpeg", Categorie.getName(carte.getCategorie()), new Random().nextInt(2) + 1 ));
+		carte.setImage(String.format("%s_0%s.jpeg", Categorie.getName(carte.getCategorie()), positif ));
 		carte.setDescription(lorem.getParagraphs(1, 2));
 		return carte;
 	}
