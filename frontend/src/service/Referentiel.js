@@ -22,3 +22,13 @@ export function getAllCategories() {
         }
     }).then(r => r.json());
 }
+
+export function getAllCompleteCategories() {
+    const url = `${BASE_URI}/tirage/categorie/get-all-complete`;
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(r => r.json());
+}

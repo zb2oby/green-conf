@@ -1,31 +1,42 @@
 import {TirageForm} from "../component/TirageForm";
 import {Button} from 'react-bootstrap';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {TirageHeader} from "../component/TirageHeader";
 import {TirageContent} from "../component/TirageContent";
+import {getAllCompleteCategories} from "../service/Referentiel";
+import {Categorie} from "../model/Categorie";
+import {useEffectOnce} from "../service/useEffectOnce";
 
 function App() {
 
     const [iniTirage, setInitTirage] = useState(true);
     const [currentTirage, setCurrentTirage] = useState(null)
     const [currentJoueur, setCurrentJoueur] = useState(null)
+    const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
+    useEffectOnce(() => {
         if (sessionStorage.getItem("savedTirage")) {
             setInitTirage(false)
             const savedTirage = JSON.parse(sessionStorage.getItem("savedTirage"));
-            setCurrentTirage(savedTirage.tirage)
+            setCurrentTirage(savedTirage.tirage || null)
             setCurrentJoueur(savedTirage.joueur)
         }
     }, [])
 
+    useEffectOnce(() => {
+        if (categories.length === 0) {
+            getAllCompleteCategories().then(res => setCategories(Object.entries(res).map(([k,v]) => new Categorie(v, k))));
+        }
+    }, [])
+
     const handleInitTirage = (tirage) => {
-        setCurrentTirage(tirage)
-        setInitTirage(false)
+        setCurrentTirage(tirage.numTirage)
+        sessionStorage.setItem("savedTirage", JSON.stringify({tirage: tirage.numTirage, joueur: currentJoueur}));
     }
 
     const handleInitJoueur = (joueur) => {
         setCurrentJoueur(joueur)
+        setInitTirage(false)
     }
 
     return (
@@ -35,13 +46,13 @@ function App() {
                 {!iniTirage && <Button className={"irma-btn"} onClick={() => setInitTirage(true)}>Initialiser un nouveau tirage</Button>}
             </div>
             {iniTirage &&
-                <TirageForm joueur={currentTirage} handleInitTirage={handleInitTirage} handleInitJoueur={handleInitJoueur}/>
+                <TirageForm joueur={currentJoueur} handleInitJoueur={handleInitJoueur}/>
             }
             {!iniTirage &&
                 <>
                     <TirageHeader className={"tirageHeader"} currentTirage={currentTirage} currentJoueur={currentJoueur}/>
                     <div className={"text-center"}>
-                        <TirageContent currentTirage={currentTirage} />
+                        <TirageContent currentTirage={currentTirage} currentJoueur={currentJoueur} categories={categories} handleInitTirage={handleInitTirage} />
                     </div>
                 </>
             }

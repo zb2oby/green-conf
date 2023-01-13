@@ -1,6 +1,8 @@
 package fr.fortil.irma.dto;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -55,6 +57,14 @@ public enum Categorie   {
     public static String randomCategorieValue()  {
         Categorie[] directions = values();
         return directions[PRNG.nextInt(directions.length)].code;
+    }
+
+    public static Map<String, String> toMap() {
+        var mapCategories = new HashMap<String, String>();
+        for (Categorie b : Categorie.values()) {
+            mapCategories.put(b.code, b.name());
+        }
+        return mapCategories;
     }
   }
 

@@ -1,24 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {initTirage} from "../service/TirageService";
 import {Joueur} from "../model/Joueur";
 import { Button, Form } from 'react-bootstrap';
-import {Tirage} from "../model/Tirage";
 
-export const TirageForm = ({joueur, handleInitTirage, handleInitJoueur}) => {
+export const TirageForm = ({joueur, handleInitJoueur}) => {
 
     const [joueurData, setJoueurData] = useState(joueur);
-
 
     const submitInit = (e) => {
         e.preventDefault();
         if (allValid()) {
-            initTirage(Joueur.from(joueurData)).then(res => {
-                const tirage = Tirage.from(res);
-                const joueur = res.joueur;
-                sessionStorage.setItem("savedTirage", JSON.stringify({tirage: tirage, joueur: joueur}))
-                handleInitTirage(tirage);
-                handleInitJoueur(joueur);
-            })
+            sessionStorage.setItem("savedTirage", JSON.stringify({joueur: Joueur.from(joueurData)}))
+            handleInitJoueur(Joueur.from(joueurData));
         }
     }
 
@@ -49,7 +41,7 @@ export const TirageForm = ({joueur, handleInitTirage, handleInitJoueur}) => {
         "Verseau",
         "Poisson",
     ]
-    console.log(joueurData)
+
     return (
         <div className={"init-form"}>
                 <Form onSubmit={submitInit}>

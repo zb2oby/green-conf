@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Button} from "react-bootstrap";
-import {conclusionTirageFor, tirageUnitaireForNum} from "../service/TirageService";
-import {getCategorieByCode} from "../service/Referentiel";
+import {getTirageComplet} from "../service/TirageService";
 import {TirageChoice} from "./TirageChoice";
+import {InitierTirageResponse} from "../model/response/InitierTirageResponse";
 
-export const TirageContent = ({currentTirage}) => {
+export const TirageContent = ({currentTirage, currentJoueur, categories, handleInitTirage}) => {
 
     const [cartes, setCartes] = useState([]);
     const [conclusion, setConclusion] = useState(null);
@@ -20,35 +20,26 @@ export const TirageContent = ({currentTirage}) => {
         }
     }, [currentTirage])
 
-    const tirerUnitairement = async (nbTirage) => {
+    const tirageComplet = () => {
         setRevealed(true);
         setRevealable(false);
-        const proms = await prepareListTirageUnitaire(nbTirage)
-        Promise.all(proms)
-            .then(allTirages => {
-                Promise.all(allTirages.map(async tirage => {
-                    const theCategory = await getCategorieByCode(tirage?.carte?.categorie);
+        getTirageComplet(currentJoueur)
+            .then(tirageComplet => {
+                handleInitTirage(new InitierTirageResponse({numTirage: tirageComplet?.tirages[0]?.numTirage, joueur: currentJoueur}))
+                Promise.all(tirageComplet.tirages.map(async tirage => {
+                    const theCategory = categories.find(c => c.code === tirage?.carte?.categorie);
                     return {...tirage?.carte, categorie: theCategory.name}
                 })).then(allCartesWithCategory => {
                     setCartes(allCartesWithCategory)
+                    setConclusion(tirageComplet.conclusion)
                 })
                 .finally(() =>
                     setTimeout(()=> {
                         executeScroll()
                     }, 120)
                 )
-            })
-            .then(_ =>  conclusionTirageFor(currentTirage?.numTirage).then(conc => setConclusion(conc)))
+            });
 
-
-    }
-
-    const prepareListTirageUnitaire = async (nbTirage) => {
-        const proms = [];
-        for (let i = 0; i<nbTirage; i++) {
-            proms.push(tirageUnitaireForNum(currentTirage?.numTirage))
-        }
-        return proms
     }
 
     const executeScroll = () => scrollRef && scrollRef?.current && scrollRef.current.scrollIntoView({
@@ -58,9 +49,9 @@ export const TirageContent = ({currentTirage}) => {
 
     return (
         <div>
-            <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed} onChoiceOk={setRevealable}/>
+            <TirageChoice nbCartes={NB_CARTES} isRevealed={revealed} onChoiceOk={setRevealable} categories={categories}/>
             {revealable && <div className={"m-5"}>
-                <Button className={"irma-btn mt-3 reveal-btn"} onClick={() => tirerUnitairement(NB_CARTES)}>Révéler les cartes !</Button>
+                <Button className={"irma-btn mt-3 reveal-btn"} onClick={() => tirageComplet()}>Révéler les cartes !</Button>
             </div>}
             <div ref={scrollRef} className="revealed-container d-flex justify-content-around flex-wrap">
                 {cartes.map(carte => {

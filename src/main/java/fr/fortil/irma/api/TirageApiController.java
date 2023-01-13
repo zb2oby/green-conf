@@ -1,5 +1,6 @@
 package fr.fortil.irma.api;
 
+import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -48,6 +49,11 @@ public class TirageApiController implements TirageApi {
 
 	public ResponseEntity<Cartes> getAllCartes() {
 		return new ResponseEntity<Cartes>(carteService.getAll(),
+				HttpStatus.OK);
+	}
+
+	public ResponseEntity<Map<String, String>> getAllCompleteCategories() {
+		return new ResponseEntity<Map<String, String>>(categorieService.getAllComplete(),
 				HttpStatus.OK);
 	}
 

@@ -27,6 +27,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import java.util.Map;
+
 @Validated
 @Api(value = "tirage", description = "the tirage API")
 @RequestMapping(value = "/irma/v1")
@@ -38,9 +40,14 @@ public interface TirageApi {
     ResponseEntity<Cartes> getAllCartes();
 
 
-    @ApiOperation(value = "retourne l'ensemble des catégories'", nickname = "getAllCategories", notes = "retourne toutes les catégories", response = Categories.class, tags={ "allCategorie", })
-    @GetMapping(value = "/tirage/categorie/get-all",
+    @ApiOperation(value = "retourne l'ensemble des catégories'", nickname = "getAllCompleteCategories", notes = "retourne toutes les catégories complètes", response = Map.class, tags={ "allCategorie", })
+    @GetMapping(value = "/tirage/categorie/get-all-complete",
         produces = { "application/json" })
+    ResponseEntity<Map<String, String>> getAllCompleteCategories();
+
+    @ApiOperation(value = "retourne l'ensemble des noms de categories'", nickname = "getAllCategories", notes = "retourne toutes les catégories", response = Categories.class, tags={ "allCategorie", })
+    @GetMapping(value = "/tirage/categorie/get-all",
+            produces = { "application/json" })
     ResponseEntity<Categories> getAllCategories();
 
     @ApiOperation(value = "retourne un catégorie spécifique'", nickname = "getByCodeCategorie", notes = "retourne une catégorie spécifique", response = Categorie.class, tags={ "getByCodeCategorie", })
