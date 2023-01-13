@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Joueur} from "../model/Joueur";
 import { Button, Form } from 'react-bootstrap';
+import {useEffectOnce} from "../service/useEffectOnce";
 
 export const TirageForm = ({joueur, handleInitJoueur}) => {
 
@@ -20,7 +21,7 @@ export const TirageForm = ({joueur, handleInitJoueur}) => {
             && (joueurData?.signeAstro !== undefined && joueurData?.signeAstro !== "null");
     }
 
-    useEffect(() => {
+    useEffectOnce(() => {
         if (sessionStorage.getItem("savedTirage")) {
             const savedTirage = JSON.parse(sessionStorage.getItem("savedTirage"));
             setJoueurData(savedTirage.joueur)
