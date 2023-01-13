@@ -23,22 +23,24 @@ export const TirageContent = ({currentTirage, currentJoueur, categories, handleI
     const tirageComplet = () => {
         setRevealed(true);
         setRevealable(false);
+
         getTirageComplet(currentJoueur)
             .then(tirageComplet => {
+
                 handleInitTirage(new InitierTirageResponse({numTirage: tirageComplet?.tirages[0]?.numTirage, joueur: currentJoueur}))
-                Promise.all(tirageComplet.tirages.map(async tirage => {
+
+                const allCartesWithCategory = tirageComplet.tirages.map(tirage => {
                     const theCategory = categories.find(c => c.code === tirage?.carte?.categorie);
                     return {...tirage?.carte, categorie: theCategory.name}
-                })).then(allCartesWithCategory => {
-                    setCartes(allCartesWithCategory)
-                    setConclusion(tirageComplet.conclusion)
                 })
-                .finally(() =>
-                    setTimeout(()=> {
-                        executeScroll()
-                    }, 120)
-                )
-            });
+                setCartes(allCartesWithCategory)
+                setConclusion(tirageComplet.conclusion)
+
+            }).finally(() =>
+                setTimeout(()=> {
+                    executeScroll()
+                }, 120)
+            );
 
     }
 
