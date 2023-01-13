@@ -127,11 +127,8 @@ public class Carte   {
       return false;
     }
     Carte carte = (Carte) o;
-    return Objects.equals(this.idCarte, carte.idCarte) &&
-        Objects.equals(this.image, carte.image) &&
-        Objects.equals(this.description, carte.description) &&
-        Objects.equals(this.categorie, carte.categorie) &&
-        Objects.equals(this.scoreBonheur, carte.scoreBonheur);
+    return Objects.equals(this.categorie, carte.categorie) &&
+    		Objects.equals(this.image, carte.image);
   }
 
   @Override
