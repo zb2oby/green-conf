@@ -40,7 +40,7 @@ public class TirageServiceImpl implements ITirageService {
 			return null;
 		}
 		if (!stockageService.checkCarteDejaTiree(numTirage, tirage.getCarte())) {
-			this.getTirageUnique(numTirage, positif);
+			tirage = this.getTirageUnique(numTirage, positif);
 		}
 		return tirage;
 	}
