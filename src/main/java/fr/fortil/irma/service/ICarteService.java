@@ -5,7 +5,7 @@ import fr.fortil.irma.dto.Cartes;
 
 public interface ICarteService {
 	
-	public Carte piocherCarte();
+	public Carte piocherCarte(Integer positif);
 	
 	public Cartes getAll();
 	
