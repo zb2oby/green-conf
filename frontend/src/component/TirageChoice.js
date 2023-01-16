@@ -42,7 +42,7 @@ export const TirageChoice = ({nbCartes, isRevealed, onChoiceOk, categories}) => 
             choices.push(
                 <li id={`choice-${cat}`} key={`choice-${cat}`}>
                     <span onClick={() => persist(`choice-${cat}`)}>
-                        <img src={require("../assets/card.png")} alt="card" className={`back-card ${isChoosenCard ? "hover" : ""} ${isChoosenCard && isRevealed ? "hideCard" : ""}`} />
+                        <img src={require("../assets/card.webp")} alt="card" className={`back-card ${isChoosenCard ? "hover" : ""} ${isChoosenCard && isRevealed ? "hideCard" : ""}`} />
                     </span>
                 </li>
             )

@@ -21,7 +21,7 @@ public class CarteServiceImpl implements ICarteService {
 		Carte carte = new Carte();
 		carte.setIdCarte(UUID.randomUUID().toString());
 		carte.setCategorie(Categorie.randomCategorieValue());
-		carte.setImage(String.format("%s_0%s.jpeg", Categorie.getName(carte.getCategorie()), positif ));
+		carte.setImage(String.format("%s_0%s.webp", Categorie.getName(carte.getCategorie()), positif ));
 		carte.setDescription(lorem.getParagraphs(1, 2));
 		return carte;
 	}
